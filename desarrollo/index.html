@@ -1,10 +1,16 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b292e"><title>Marea 3D · Laboratorio de corrientes</title></head>
-<body><header class="top"><a href="#simulador" class="brand" aria-label="Marea 3D, inicio"><span class="logomark"><svg viewBox="0 0 42 40" fill="none" aria-hidden="true"><path d="M4 19C14 19 15 6 25 6C31 6 34 12 38 12M4 26C14 26 18 13 26 13C32 13 34 19 38 19M4 33C16 33 20 21 28 21C32 21 34 26 38 26" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/></svg></span>Marea<span class="brand3">3D</span></a>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b292e"><title>Náutica Volt · Laboratorio de corrientes</title></head>
+<body><header class="top"><a href="#simulador" class="brand" aria-label="Náutica Volt, inicio"><span class="logomark"><svg viewBox="0 0 42 40" fill="none" aria-hidden="true"><path d="M4 19C14 19 15 6 25 6C31 6 34 12 38 12M4 26C14 26 18 13 26 13C32 13 34 19 38 19M4 33C16 33 20 21 28 21C32 21 34 26 38 26" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/></svg></span>Náutica<span class="brand3">Volt</span></a>
 <nav aria-label="Principal"><a href="#simulador">Simulador</a><a href="#comparador">Comparador</a><a href="#presupuesto">Presupuesto</a><a href="#proyecto">Proyecto</a></nav><button id="present" class="present"><i data-i="presentation"></i><span>Presentar</span></button></header>
 <main>
 <section id="simulador" class="view">
-<div class="pagehead"><div><p class="eyebrow"><b></b> EXPOFERIA EPIER 2026</p><h1>Laboratorio de corrientes</h1><p class="lead">Explora cómo el movimiento del agua se convierte en electricidad.</p></div><div class="switch" id="mode"><button data-mode="lab">Banco de ensayo</button><button data-mode="sea">Escala marina</button></div></div>
+<header class="voltHero">
+<div class="voltIntro"><p class="voltOver">UNAJ <span>/</span> EXPOFERIA EPIER 2026</p>
+<h1>Náutica <em>Volt</em></h1><p class="voltDescription">Laboratorio de energía hidrocinética</p>
+<p class="voltDetail">Cambia el rotor, ajusta la corriente y descubre cuánta electricidad puede generar tu diseño.</p>
+<a class="voltDownload" href="https://github.com/LeninSumari/marea-3d/releases/download/v2.0.0/NauticaVolt-Windows-x64.exe"><span aria-hidden="true">↓</span> Descargar para Windows</a></div>
+<div class="voltCaption">Turbina de eje vertical <span> / </span> Modelo 3D</div></header>
+<div class="voltWorkbench"><h2>Banco de simulación</h2><div class="switch" id="mode" aria-label="Escenario"><button data-mode="lab">Banco de ensayo</button><button data-mode="sea">Escala marina</button></div></div>
 <div class="labgrid"><section class="stagecol"><div class="stage" id="stage"><canvas id="world" aria-label="Modelo tridimensional interactivo"></canvas><div class="stageHead"><span class="stageLabel"><span class="liveDot"></span> <span id="stageTitle">Banco de ensayo</span></span><span class="viewtag">VISTA 3D</span></div><div id="stageError" hidden></div><div class="partInfo" id="partInfo" hidden></div>
 <div class="stageTools"><button id="run" class="solid"><i data-i="pause"></i> Pausar</button><div class="toolset"><button id="flow" title="Mostrar u ocultar el flujo" aria-label="Mostrar u ocultar el flujo"><i data-i="waves"></i></button><button id="explode" title="Vista desmontada" aria-label="Vista desmontada"><i data-i="layers-3"></i></button><button id="camera" title="Restablecer cámara" aria-label="Restablecer cámara"><i data-i="rotate-ccw"></i></button></div></div></div>
 <div class="stageInspect">
@@ -23,7 +29,7 @@
 <article class="panel spaced loadbox"><div><h2>¿Qué podría alimentar?</h2><p>Compara la generación con una carga ideal de referencia.</p></div><label class="field">Carga eléctrica<select id="load"><option value="0.02">LED indicador · 20 mW</option><option value="7">Luminaria · 7 W</option><option value="10">Carga USB · 10 W</option><option value="60">Portátil · 60 W</option></select></label><div id="equiv"></div></article>
 <details class="panel trials"><summary>Nueve ensayos de referencia <span>Informe del proyecto</span></summary><div id="trials"></div></details></section>
 <section id="comparador" class="view" hidden></section><section id="presupuesto" class="view" hidden></section><section id="proyecto" class="view" hidden></section>
-</main><footer><span>Marea 3D · Ingeniería en Energías Renovables</span><span>Universidad Nacional de Juliaca</span></footer>
+</main><footer><span>Náutica Volt · Ingeniería en Energías Renovables</span><span>Universidad Nacional de Juliaca</span></footer>
 <dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialoghead"><h2 id="dialogTitle"></h2><button id="close" aria-label="Cerrar"><i data-i="x"></i></button></div><div id="dialogBody"></div></dialog>
-<div id="tour" hidden><span id="tourText"></span><div><button id="tourNext">Siguiente</button><button id="tourClose">Salir</button></div></div>
+<dialog id="expoDeck" aria-label="Presentación Náutica Volt"><header class="expoTop"><b>Náutica <span>Volt</span></b><button data-exit>Salir de la presentación</button></header><section class="expoCanvas" aria-live="polite"></section><footer class="expoBottom" style="width:100%"><span class="expoCount"></span><div><button data-back>← Anterior</button><button data-next>Siguiente →</button></div></footer><progress max="5" aria-label="Avance de la presentación"></progress></dialog>
 <script type="module" src="/src/main.js"></script></body></html>

@@ -281,7 +281,7 @@ export function createScene(canvas,onSelect=()=>{}) {
   decal(labBase,.204,.020,[-.355,-.014,.2224],(ctx,w,h)=>{
     ctx.fillStyle='#12272e';ctx.fillRect(0,0,w,h);
     ctx.fillStyle='#7cceba';ctx.fillRect(0,0,w*.028,h);
-    ctx.font='bold '+h*.63+'px Arial';ctx.textBaseline='middle';ctx.fillStyle='#d8e5e2';ctx.fillText('UNAJ  /  MAREA 3D',w*.055,h*.52);
+    ctx.font='bold '+h*.63+'px Arial';ctx.textBaseline='middle';ctx.fillStyle='#d8e5e2';ctx.fillText('UNAJ  /  NÁUTICA VOLT',w*.055,h*.52);
   });
   for(const x of [-.44,.44])for(const z of [-.16,.16]){
     cyl(labBase,.022,.025,.012,[x,-.035,z],mats.rubber);

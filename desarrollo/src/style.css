@@ -329,3 +329,29 @@ body:has(.stagecol.expanded) { overflow: hidden; }
 @media (max-height: 540px) and (orientation: landscape) {
   .stagecol.expanded .stageInspect, .stagecol.expanded .stageFoot { padding-block: 4px; }
 }
+
+/* Portada y banco de simulación de Náutica Volt. */
+.voltHero {
+ position:relative; isolation:isolate; overflow:hidden; margin:20px 0 0;
+ border-radius:18px; color:#f5fff9; background:#06272f;
+ background-image:linear-gradient(90deg,#072931 0%,#072931 33%,rgba(7,41,49,.92) 45%,rgba(7,41,49,.12) 75%),
+ url('./turbina-marina.png'); background-repeat:no-repeat; background-size:cover,62% auto; background-position:center,right 44%;
+}
+.voltIntro {position:relative; padding:clamp(20px,2.5vw,40px); max-width:58%}
+.voltOver,.voltCaption {font:600 10px/1.5 var(--mono);letter-spacing:.12em}
+.voltOver {color:#a9ebd9;margin:0 0 8px}.voltOver span,.voltCaption span {color:#e5b26c;padding:0 5px}
+.voltHero h1 {color:white;font:600 clamp(56px,5.8vw,90px)/.96 var(--display);letter-spacing:-.035em}
+.voltHero h1 em {color:#93f3c9;font-style:normal}
+.voltDescription {margin:8px 0 4px;color:#f5f7ec;font-size:clamp(16px,1.4vw,22px);font-weight:650}
+.voltDetail {max-width:48ch;color:#c1d7d7;font-size:14px}
+.voltDownload {margin-top:15px;display:inline-flex;align-items:center;gap:9px;border-radius:7px;background:#a6f2d4;color:#082e31;padding:9px 15px;font-size:13px;font-weight:750}.voltDownload:hover {background:#d5ffe9}.voltDownload span{font-size:19px;line-height:1}
+.voltCaption {position:absolute;right:16px;bottom:15px;color:#effffb;background:#092a32dd;border:1px solid #8bc2bd66;padding:5px 10px;border-radius:6px;font-size:9px}
+.voltWorkbench {display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 0 12px}
+.voltWorkbench h2 {font:600 clamp(24px,2.4vw,36px)/1 var(--display);letter-spacing:-.015em}
+.stagecol,.controls {box-shadow:0 6px 24px #0d423410}
+@media(max-width:650px){
+ .voltHero {margin-top:12px;background-size:cover,auto 105%;background-position:center,calc(100% + 115px) center;background-image:linear-gradient(90deg,#072931 0%,#072931f5 36%,#072931a8 74%,#07293166),url('./turbina-marina.png')}
+ .voltIntro {max-width:90%;padding:20px}.voltDetail{max-width:28ch}.voltCaption{display:none}
+ .voltWorkbench {flex-wrap:wrap}.voltWorkbench h2{font-size:24px}
+}
+@media print {.voltDownload{display:none}}

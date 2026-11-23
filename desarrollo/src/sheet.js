@@ -13,7 +13,7 @@ export function scenarioSheet(model,state,capture){
     measure('Energía diaria a '+format(model.hours,1)+' h equivalentes',format(model.dailyKWh,3)+' kWh')+
     measure('Proyección anual a esas horas',format(model.annualKWh,2)+' kWh')+
     measure('Día medio de marea sinusoidal',format(model.tidalDayKWh,3)+' kWh');
-  return '<article class="scenarioSheet"><p class="sheetEyebrow">MAREA 3D · EXPOFERIA EPIER 2026</p>'+
+  return '<article class="scenarioSheet"><p class="sheetEyebrow">NÁUTICA VOLT · EXPOFERIA EPIER 2026</p>'+
     '<h3>'+name+' · '+model.turbine.name+'</h3><p>'+model.material.name+' · Escala '+model.scale+'× · '+(model.running?'En marcha':'Detenida')+'</p>'+
     (capture?'<img class="sheetPhoto" src="'+capture+'" alt="Vista del escenario seleccionado">':'')+
     '<h4>Condiciones de simulación</h4><dl>'+

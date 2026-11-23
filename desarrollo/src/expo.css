@@ -1,0 +1,20 @@
+#expoDeck {position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:clamp(16px,3vw,48px);border:0;border-radius:0;background:radial-gradient(ellipse at 84% 45%,#184c55,#092831 65%);color:#ecfff6;overflow:hidden}
+#expoDeck[open] {display:grid;grid-template-rows:auto minmax(0,1fr) auto 3px;gap:16px}
+.expoTop,.expoBottom {display:flex;align-items:center;justify-content:space-between;gap:16px}
+.expoTop b {font:600 26px var(--display)}.expoTop b span{color:#9ff0cf}
+#expoDeck button {background:#19424a;color:white;padding:10px 16px;border-radius:8px;font-weight:650}
+#expoDeck [data-next] {background:#a6f2d4;color:#082e31}.expoCount,.expoChapter,.expoMetrics small,.expoCards small{font:600 12px/1.5 var(--mono);letter-spacing:.03em}
+.expoCanvas {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4vw;overflow:auto}
+.expoChapter {color:#a4f0cf;text-transform:uppercase}.expoCopy h2{font:600 clamp(36px,5.1vw,86px)/.98 var(--display);color:white;letter-spacing:-.025em;margin:12px 0 20px}
+.expoBody {line-height:1.5;font-size:clamp(16px,1.5vw,23px);color:#d8e7e6;max-width:55ch}
+.expoCanvas figure {margin:0;border-radius:18px;overflow:hidden;background:#10303b}
+.expoCanvas figure img {display:block;width:100%;max-height:60vh;object-fit:contain}
+.expoMetrics {display:flex;flex-wrap:wrap;gap:18px 30px;margin-top:24px;padding-top:18px;border-top:1px solid #53817f}
+.expoMetrics strong,.expoCards strong {display:block;color:#a6f2d4;font:600 clamp(25px,3vw,46px)/1.2 var(--display)}
+.expoMetrics small,.expoCards small{display:block;color:#cfe4df;font-size:12px}
+.compareSlide{grid-template-columns:1fr;align-content:center;gap:18px}.compareSlide .expoBody {max-width:86ch}
+.expoCards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.expoCards article{border:1px solid #43656a;border-radius:12px;padding:12px;background:#0f353d}.expoCards img{width:100%;height:clamp(68px,17vh,160px);object-fit:contain}.expoCards h3{color:#fff;font-size:20px}
+.expoBottom {border-top:1px solid #43656a;padding-top:12px}.expoBottom div{display:flex;gap:6px}.expoBottom button:disabled{opacity:.4}
+#expoDeck progress {height:3px;width:100%;appearance:none;border:0;background:#36575d}#expoDeck progress::-webkit-progress-bar{background:#36575d}#expoDeck progress::-webkit-progress-value {background:#9de8c9}
+@media(max-width:700px){.expoCanvas{display:block}.expoCanvas figure,.expoCards{margin-top:16px}.expoCards {grid-template-columns:1fr}.expoCards article{min-height:85px}.expoCards img{float:right;width:35%;height:80px}.expoMetrics{margin-top:12px}.expoCount{white-space:nowrap}}

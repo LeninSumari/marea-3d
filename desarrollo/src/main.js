@@ -1,3 +1,4 @@
+import {enableExpo} from './expo.js';
 import './style.css';
 import { createScene } from './scene.js';
 import { calculate, DEFAULTS, TRIALS, SOURCES, ASSUMPTIONS, MATERIALS, TURBINES } from './model.js';
@@ -21,7 +22,7 @@ const cash = amount => 'S/ '+fmt(amount,2);
 const row = (k,v) => '<div class="lineitem"><span>'+k+'</span><strong>'+v+'</strong></div>';
 const options = list => Object.entries(list).map(([key,v])=>'<option value="'+key+'">'+v.name+'</option>').join('');
 const scaleDefaults = { lab:{...DEFAULTS}, sea:{...DEFAULTS,mode:'sea',scale:10,speed:2} };
-let s={...DEFAULTS}, r=calculate(s), route='simulador', tourIndex=-1;
+let s={...DEFAULTS}, r=calculate(s), route='simulador';
 const viewState={exploded:false,flow:true};
 let scene, referenceScene, dual=false;
 const presets = new Map();
@@ -283,17 +284,7 @@ function navigate(){route=location.hash.slice(1);if(!scenarios.includes(route))r
  document.querySelectorAll('nav a').forEach(a=>{a.classList.toggle('active',a.hash==='#'+route);if(a.hash==='#'+route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  if(route==='proyecto')project();update();scrollTo(0,0);
 }
-let savedTour;
-function showTour(i){
- tourIndex=i;const steps=['El prototipo de Juliaca','Del tanque a la corriente marina','Tres turbinas frente al mismo flujo','Inversión y rango de costos'];
- byId('tourText').textContent=(i+1)+' / 4 · '+steps[i];byId('tourNext').textContent=i===3?'Finalizar':'Siguiente';
- if(i===0)switchMode('lab',{...DEFAULTS});if(i===1)switchMode('sea',{speed:2,scale:10,turbine:'darrieus',running:true});
- location.hash=['simulador','simulador','comparador','presupuesto'][i];navigate();
-}
-function endTour(){byId('tour').hidden=true;document.body.classList.remove('touring');tourIndex=-1;if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});if(savedTour){s={...savedTour.state};Object.assign(viewState,savedTour.view);location.hash=savedTour.route;navigate();savedTour=null;}}
-byId('present').onclick=()=>{if(tourIndex>=0)return;savedTour={state:{...s},view:{...viewState},route};document.body.classList.add('touring');byId('tour').hidden=false;document.documentElement.requestFullscreen?.().catch(()=>{});showTour(0);};
-byId('tourNext').onclick=()=>tourIndex>=3?endTour():showTour(tourIndex+1);byId('tourClose').onclick=endTour;
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tourIndex>=0)endTour();});
+enableExpo(media);
 window.addEventListener('hashchange',navigate);new ResizeObserver(drawChart).observe(byId('chart'));
 decorate();initTrials();navigate();
 
