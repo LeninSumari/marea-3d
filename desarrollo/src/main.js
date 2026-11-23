@@ -200,12 +200,22 @@ function drawChart(){
  const peak=calcAt(maxV), factor=peak<1?1000:peak>1000?.001:1;
  const label=factor===1000?'mW':factor===.001?'kW':'W';const top=Math.max(peak*factor,0.01);
  const X=v=>x0+(x1-x0)*v/maxV, Y=p=>y0-(y0-y1)*p*factor/top;
- ctx.font='11px sans-serif';ctx.fillStyle='#516861';ctx.fillText(label,4,13);
- for(let i=0;i<=3;i++){const y=y0-(y0-y1)*i/3;ctx.strokeStyle='#dbe3dd';ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();ctx.fillText(fmt(top*i/3,top<1?3:top<10?1:0),4,y+3);}
- ctx.lineWidth=2.5;ctx.strokeStyle='#197b6d';ctx.beginPath();
- for(let i=0;i<=100;i++){const v=maxV*i/100;i?ctx.lineTo(X(v),Y(calcAt(v))):ctx.moveTo(X(v),Y(calcAt(v)));}
- ctx.stroke();ctx.fillText('0',x0-3,h-12);ctx.fillText(fmt(maxV,2)+' m/s',x1-42,h-12);
- ctx.beginPath();ctx.fillStyle='#c26024';ctx.arc(X(r.operatingSpeed),Y(r.electricW),5,0,2*Math.PI);ctx.fill();
+ ctx.font='12px "DM Sans Variable",sans-serif';ctx.fillStyle='#bbcee5';ctx.fillText(label,3,14);
+ for(let i=0;i<=3;i++){
+  const y=y0-(y0-y1)*i/3;ctx.strokeStyle='#32455e';ctx.setLineDash([3,5]);ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();
+  ctx.fillText(fmt(top*i/3,top<1?3:top<10?1:0),3,y+4);
+ }
+ ctx.setLineDash([]);
+ const curve=new Path2D();curve.moveTo(X(0),Y(calcAt(0)));
+ for(let i=1;i<=120;i++){const v=maxV*i/120;curve.lineTo(X(v),Y(calcAt(v)))}
+ const area=new Path2D(curve);area.lineTo(x1,y0);area.lineTo(x0,y0);area.closePath();
+ const fill=ctx.createLinearGradient(0,y1,0,y0);fill.addColorStop(0,'rgba(72,204,255,.39)');fill.addColorStop(1,'rgba(72,204,255,.03)');
+ ctx.fillStyle=fill;ctx.fill(area);ctx.strokeStyle='#5bd4ff';ctx.lineWidth=3;ctx.stroke(curve);
+ ctx.fillStyle='#bbcee5';ctx.textAlign='center';
+ for(let i=0;i<=4;i++){const v=maxV*i/4;ctx.textAlign=i===4?'right':i===0?'left':'center';ctx.fillText(i===4?fmt(v,2)+' m/s':fmt(v,v?2:0),X(v),h-9)}
+ const x=X(r.operatingSpeed),y=Y(r.electricW);ctx.strokeStyle='#fbbf79';ctx.lineWidth=1;ctx.setLineDash([3,4]);
+ ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y0);ctx.stroke();ctx.setLineDash([]);
+ ctx.beginPath();ctx.fillStyle='#ffc17a';ctx.arc(x,y,5,0,2*Math.PI);ctx.fill();ctx.lineWidth=2;ctx.strokeStyle='#132237';ctx.stroke();
  c.setAttribute('aria-label','Potencia frente a velocidad. Punto actual '+watts(r.electricW)+' a '+fmt(r.operatingSpeed)+' m/s.');
 }
 function update() {
@@ -220,10 +230,17 @@ function update() {
  byId('run').innerHTML=icon(s.running?'pause':'play')+(s.running?'Parar':'Marcha');
  byId('explode').setAttribute('aria-pressed',String(viewState.exploded));byId('flow').setAttribute('aria-pressed',String(viewState.flow));
  const [val,u]=power(r.electricW);
+ byId('instrumentScenario').textContent=[r.turbine.name,r.material.name,'Escala '+r.scale+'×'].join('  /  ');
  byId('kpis').innerHTML=metric('Potencia generada',val,u,'zap')+metric(lab?'Tensión en carga':'Potencia del flujo',lab?fmt(r.voltage):power(r.flowW)[0],lab?'V':power(r.flowW)[1],'activity')+metric(lab?'Corriente en carga':'Energía diaria¹',lab?fmt(r.currentA*1000):fmt(r.dailyKWh,3),lab?'mA':'kWh','gauge')+metric(lab?'Caudal del canal':'Área del rotor',lab?fmt(r.flowLps,1):fmt(r.area,3),lab?'L/s':'m²','waves');
  byId('electitle').textContent=lab?'Balance del bombeo':'Proyección de energía';
- byId('balance').innerHTML=lab?row('Fuente de referencia','12 V · 30 W')+row('Demanda del bombeo',watts(r.pumpW))+row('Recuperación eléctrica',fmt(r.recoveryPct,4)+' %')+'<p class="note">'+(r.availableSupply?'La demanda calculada queda dentro de la potencia nominal.':'La demanda calculada supera la fuente en '+fmt(r.pumpW-r.supplyW)+' W.')+'</p>':
+ byId('balance').innerHTML=lab?row('Tensión de la fuente','12 V')+row('Recuperación eléctrica',fmt(r.recoveryPct,4)+' %')+'<p class="note">'+(r.availableSupply?'La demanda calculada queda dentro de la potencia nominal.':'La demanda calculada supera la fuente en '+fmt(r.pumpW-r.supplyW)+' W.')+'</p>':
  row('¹ Horas equivalentes al día',fmt(r.hours,1)+' h')+row('Proyección a 365 días',fmt(r.annualKWh,2)+' kWh')+row('Marea sinusoidal ideal · día medio',fmt(r.tidalDayKWh,3)+' kWh')+'<p class="caption">El escenario usa '+fmt(s.speed)+' m/s como velocidad pico. La predicción de un sitio requiere su serie de corrientes y la curva medida de la turbina.</p>';
+ if(lab){
+  const max=Math.max(r.pumpW,r.supplyW,1);
+  const bars=document.createElement('div');bars.className='balanceBars';
+  bars.innerHTML=[[r.supplyW,'Fuente'],[r.pumpW,'Bombeo']].map(([value,label])=>'<div><span>'+label+'</span><i><b style="width:'+100*value/max+'%"></b></i><strong>'+watts(value)+'</strong></div>').join('');
+  byId('balance').prepend(bars);
+ }
  if(!lab){
    const cycle=document.createElement('button');cycle.className='lightbtn';cycle.id='tideStudy';cycle.textContent='Explorar un ciclo de marea';
    cycle.onclick=()=>{openDialog('Ciclo de marea','');renderTidePanel(byId('dialogBody'),{...s,etaPct:r.etaPct});};

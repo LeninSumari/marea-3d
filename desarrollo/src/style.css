@@ -355,3 +355,32 @@ body:has(.stagecol.expanded) { overflow: hidden; }
  .voltWorkbench {flex-wrap:wrap}.voltWorkbench h2{font-size:24px}
 }
 @media print {.voltDownload{display:none}}
+
+/* Panel de instrumentos */
+:root {--bg:#e9eef5;--ink:#182b45;--muted:#50637a;--nav:#101e32;--line:#ccd7e3;--sea:#195a91;--paper:#fcfdff}
+.top{background:#101e32;border-color:#243c55}.top nav a.active{background:#284660;color:white}
+.voltWorkbench h2,.loadbox h2,.outputs h2,.instrumentPanel h2 {font-family:var(--font);font-weight:700;letter-spacing:-.035em}
+.voltWorkbench h2{font-size:clamp(21px,2vw,32px)}.switch button.on{background:#193959}
+.instrumentPanel{margin-top:22px;padding:clamp(16px,2.2vw,34px);border:1px solid #263b55;border-radius:20px;background:radial-gradient(ellipse at 95% 0,#243e5e 0,transparent 50%),#101d30;color:#edf5ff;box-shadow:0 12px 30px #182e471f}
+.instrumentPanel .outputs{margin:0 0 16px}.instrumentPanel .sectionhead{margin-bottom:16px}
+.instrumentPanel .outputs h2{color:#f2f7ff;font-size:clamp(25px,2.4vw,36px);line-height:1.15}
+#instrumentScenario {font-size:13px;color:#b5c9e2;margin:5px 0}
+.instrumentPanel .modelNote{background:#203955;border:1px solid #4b6684;padding:5px 11px;color:#daebff;border-radius:20px;white-space:nowrap}
+.instrumentPanel .modelNote span{background:#7ec6ff;border-radius:50%}
+.instrumentPanel .kpis{gap:10px}.instrumentPanel .kpi{--signal:#67d6ff;position:relative;padding:16px clamp(12px,1.4vw,23px);background:#1b3048;border:1px solid #344d67;border-radius:10px;overflow:hidden;color:#fff}
+.instrumentPanel .kpi::after{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;background:var(--signal);border-radius:0 3px 3px 0}
+.instrumentPanel .kpi:first-child{background:linear-gradient(115deg,#194c74,#163854);border-color:#3985ad}
+.instrumentPanel .kpi:nth-child(2){--signal:#bba7ff}.instrumentPanel .kpi:nth-child(3){--signal:#ffbd79}.instrumentPanel .kpi:nth-child(4){--signal:#7bdfce}
+.instrumentPanel .kpi .name{color:#deebfa;gap:9px}.instrumentPanel .kpi .icon{color:var(--signal);width:19px;height:19px}
+.instrumentPanel .kpi strong{font:650 clamp(24px,2.7vw,45px)/1.1 var(--font);letter-spacing:-.045em;margin-top:13px}
+.instrumentPanel .kpi small{color:var(--signal);font:600 13px var(--mono);letter-spacing:0}
+.instrumentPanel .below{gap:12px}.instrumentPanel .panel{background:#14253a;border:1px solid #344960;border-radius:12px;color:#edf5ff;padding:clamp(14px,1.6vw,24px)}
+.instrumentPanel .panel h2{font-size:clamp(18px,1.55vw,24px);color:#f3f7ff}
+.instrumentPanel .panel canvas{height:205px}.instrumentPanel .tiny,.instrumentPanel .panel .caption,.instrumentPanel .sectionhead>.icon{color:#b5cbe2}
+.instrumentPanel .lineitem{border-color:#31465b;color:#cddcee;padding:7px 0}.instrumentPanel .lineitem strong{color:#edf6ff}
+.instrumentPanel .note{background:#382e24;border-color:#e7ab62;color:#ffe0af;margin-bottom:0}
+.balanceBars{display:grid;gap:10px;margin:12px 0 14px}.balanceBars div{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;font-size:12px;color:#d7e9fe}
+.balanceBars i{height:8px;background:#283e55;border-radius:9px;overflow:hidden}.balanceBars b{display:block;height:100%;background:#65cdff;border-radius:9px}.balanceBars div+div b{background:#f4b16e}.balanceBars strong{font:600 12px var(--mono);min-width:75px;text-align:right}
+.instrumentPanel .lightbtn,.instrumentPanel .tablebtn{background:#233c54;color:#d4efff;border-color:#426580}
+.loadbox{border-left:4px solid #39769e;background:#f9fbff}.loadbox strong{color:#215c91;font:700 26px var(--font)}.trials{background:#f9fbff}
+@media(max-width:650px){.instrumentPanel{padding:13px;border-radius:14px}.instrumentPanel .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.instrumentPanel .sectionhead{align-items:start;gap:5px}.instrumentPanel .modelNote{white-space:normal;font-size:10px;padding:3px 7px}.instrumentPanel .below{grid-template-columns:1fr}.instrumentPanel .kpi .name{font-size:11px}.instrumentPanel .kpi{padding:12px}.instrumentPanel .kpi strong{font-size:24px}.instrumentPanel .panel canvas{height:175px}}
