@@ -1,0 +1,25 @@
+.labels3d{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3}
+.labels3d button{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:0;background:transparent;color:#e4fcf3;padding:0;transform:translate(-5px,-50%);white-space:nowrap;font:600 11px/1.3 var(--font);filter:drop-shadow(0 1px 4px #001f22ab)}
+.labels3d button i{display:block;width:9px;height:9px;border-radius:50%;background:#fff6cc;border:2px solid #efad51}
+.labels3d button i:after{content:'';display:block;width:11px;border-bottom:1px solid #ffe4ab;transform:translate(5px,3px)}
+.labels3d button span{margin-left:10px;padding:4px 7px;background:#102e34e8;border:1px solid #b5d6c9;border-radius:4px}
+#labels3d{background:transparent;color:#dcf5e9;border:1px solid #6d8e8c;border-radius:5px;padding:5px 9px;font:600 12px var(--font)}
+#labels3d[aria-pressed=true]{background:#d4f2df;color:#0e3838}
+.partInfo button.referenceLink{position:static;display:block;margin-top:6px;padding:0;background:transparent;border:0;color:#127467;text-decoration:underline;text-underline-offset:2px;font-size:11px}
+.liveDot.stopped{background:#dba06b}.stageHead,.stageTools{z-index:4}.partInfo{z-index:5}.rotorPhoto{object-fit:cover}
+#balance .lightbtn{margin-top:8px}
+@media (max-width:550px){#labels3d{font-size:11px;padding:6px}}
+.sheetBtn{display:flex;align-items:center;justify-content:space-between;background:#e3ede5;color:#104943;font-size:13px;font-weight:640;padding:9px 12px;border-radius:5px;margin:0}
+.scenarioSheet .sheetEyebrow{margin:0 0 .4rem;font:600 11px/1.4 monospace;letter-spacing:.12em;color:#216867}.scenarioSheet h3{font-size:24px}.scenarioSheet h4{margin:12px 0 4px}.scenarioSheet dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}.scenarioSheet dl div{border-bottom:1px solid #d7e4df;padding:4px 0}.scenarioSheet dt{font-size:11px;color:#4a6060}.scenarioSheet dd{font-size:13px;font-weight:650;margin:0}.sheetPhoto{display:block;width:100%;height:145px;object-fit:contain;background:#15353d;border-radius:7px;margin:10px 0}.sheetNote{font-size:11px;line-height:1.4;color:#4d5c5c}.scenarioSheet button{margin-top:10px}
+@media(max-width:720px){.sheetBtn{grid-column:span 2}}@media(max-width:355px){.sheetBtn{grid-column:auto}}
+@page{size:A4;margin:14mm}
+@media print{
+ body:has(.scenarioSheet){background:white!important;padding:0!important}
+ body:has(.scenarioSheet)>:not(#dialog){display:none!important}
+ #dialog:has(.scenarioSheet){position:static!important;display:block!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:white;width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;overflow:visible!important}
+ #dialog::backdrop{background:white}
+ #dialog:has(.scenarioSheet) .dialoghead,#printSheet{display:none!important}
+ .scenarioSheet{color:#122d30;font:10pt/1.3 sans-serif}.scenarioSheet h3{font-size:21pt}.scenarioSheet dl{grid-template-columns:repeat(3,minmax(0,1fr))}.scenarioSheet dl div{break-inside:avoid}.sheetPhoto{height:42mm;print-color-adjust:exact}
+}
+.cadViewer p{margin:0 0 8px;font-size:13px;color:#416266}.cadViewer canvas{width:100%;height:clamp(200px,37vh,350px);display:block;border-radius:10px;touch-action:none}.cadViewer>div{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0}.cadDims{font-size:13px;font-weight:600}.cadViewer small{color:#4a6567}.cadOutline[aria-pressed=true]{background:#cee9e0}
+.cadAction{display:block;margin:8px 15px 15px;font-size:12px;font-weight:650;color:#126354}
