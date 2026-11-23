@@ -40,6 +40,7 @@ const scenarios=['simulador','comparador','presupuesto','proyecto'];
 const appImages=window.MAREA_ASSETS || {};
 const media=src=>appImages[src] || src;
 const field=(label,id,value,min,max,step)=>'<label class="field" for="'+id+'">'+label+'<input type="number" required id="'+id+'" value="'+value+'" min="'+min+'" max="'+max+'" step="'+step+'"></label>';
+byId('prototypePhoto').src=media('./evidencia/recipiente-construido.webp');
 let releaseCad;
 function clearCad(){releaseCad?.();releaseCad=null;}
 byId('dialog').addEventListener('close',clearCad);
@@ -172,7 +173,8 @@ byId('dual').onclick=()=>{
 };
 function loads(){
  const w=Number(byId('load').value);
- byId('equiv').innerHTML='<strong>'+fmt(Math.floor(r.electricW/w),0)+' unidades</strong><p>Simultáneas a potencia estable. Faltaría comprobar tensión, acondicionamiento y pérdidas de conexión.</p>';
+ const count=Math.floor(r.electricW/w);
+ byId('equiv').innerHTML='<strong>'+fmt(count,0)+(count===1?' carga':' cargas')+'</strong><p>'+watts(r.electricW)+' disponibles / '+watts(w)+' por carga. Estimación ideal antes de pérdidas de conversión.</p>';
 }
 byId('load').onchange=loads;
 for(const [id,key] of [['explode','exploded'],['flow','flow']])byId(id).onclick=()=>{viewState[key]=!viewState[key];update();};
@@ -230,10 +232,11 @@ function update() {
  byId('run').innerHTML=icon(s.running?'pause':'play')+(s.running?'Parar':'Marcha');
  byId('explode').setAttribute('aria-pressed',String(viewState.exploded));byId('flow').setAttribute('aria-pressed',String(viewState.flow));
  const [val,u]=power(r.electricW);
- byId('instrumentScenario').textContent=[r.turbine.name,r.material.name,'Escala '+r.scale+'×'].join('  /  ');
+ byId('instrumentScenario').textContent=[r.turbine.name,r.material.name,'Escala '+r.scale+'×','Rendimiento supuesto '+fmt(r.etaPct,1)+' %'].join(' · ');
+ byId('chartReadout').textContent=(s.running?'Punto de operación':'Equipo detenido')+' · '+fmt(r.operatingSpeed)+' m/s · '+watts(r.electricW);
  byId('kpis').innerHTML=metric('Potencia generada',val,u,'zap')+metric(lab?'Tensión en carga':'Potencia del flujo',lab?fmt(r.voltage):power(r.flowW)[0],lab?'V':power(r.flowW)[1],'activity')+metric(lab?'Corriente en carga':'Energía diaria¹',lab?fmt(r.currentA*1000):fmt(r.dailyKWh,3),lab?'mA':'kWh','gauge')+metric(lab?'Caudal del canal':'Área del rotor',lab?fmt(r.flowLps,1):fmt(r.area,3),lab?'L/s':'m²','waves');
  byId('electitle').textContent=lab?'Balance del bombeo':'Proyección de energía';
- byId('balance').innerHTML=lab?row('Tensión de la fuente','12 V')+row('Recuperación eléctrica',fmt(r.recoveryPct,4)+' %')+'<p class="note">'+(r.availableSupply?'La demanda calculada queda dentro de la potencia nominal.':'La demanda calculada supera la fuente en '+fmt(r.pumpW-r.supplyW)+' W.')+'</p>':
+ byId('balance').innerHTML=lab?row('Tensión de la fuente','12 V')+row('Recuperación eléctrica',fmt(r.recoveryPct,4)+' %')+'<p class="note">'+(r.availableSupply?'La demanda calculada queda dentro de la potencia nominal.':'A este caudal faltan '+fmt(r.pumpW-r.supplyW)+' W para alimentar la bomba con la fuente indicada.')+'</p>':
  row('¹ Horas equivalentes al día',fmt(r.hours,1)+' h')+row('Proyección a 365 días',fmt(r.annualKWh,2)+' kWh')+row('Marea sinusoidal ideal · día medio',fmt(r.tidalDayKWh,3)+' kWh')+'<p class="caption">El escenario usa '+fmt(s.speed)+' m/s como velocidad pico. La predicción de un sitio requiere su serie de corrientes y la curva medida de la turbina.</p>';
  if(lab){
   const max=Math.max(r.pumpW,r.supplyW,1);

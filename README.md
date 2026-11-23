@@ -3,7 +3,7 @@
 Laboratorio 3D de energía hidrocinética para la expoferia de Ingeniería en Energías Renovables de la Universidad Nacional de Juliaca.
 
 - [Abrir el simulador web](https://leninsumari.github.io/marea-3d/)
-- [Descargar el programa para Windows x64](https://github.com/LeninSumari/marea-3d/releases/download/v2.1.0/NauticaVolt-Windows-x64.exe)
+- [Descargar el programa para Windows x64](https://github.com/LeninSumari/marea-3d/releases/latest/download/NauticaVolt-Windows-x64.exe)
 
 El programa funciona sin conexión y utiliza Microsoft Edge WebView2 Runtime x64 y .NET Framework 4.6.2 o posterior. El archivo HTML de la raíz también se puede abrir sin conexión con un navegador compatible con WebGL 2.
 

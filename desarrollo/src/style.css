@@ -384,3 +384,33 @@ body:has(.stagecol.expanded) { overflow: hidden; }
 .instrumentPanel .lightbtn,.instrumentPanel .tablebtn{background:#233c54;color:#d4efff;border-color:#426580}
 .loadbox{border-left:4px solid #39769e;background:#f9fbff}.loadbox strong{color:#215c91;font:700 26px var(--font)}.trials{background:#f9fbff}
 @media(max-width:650px){.instrumentPanel{padding:13px;border-radius:14px}.instrumentPanel .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.instrumentPanel .sectionhead{align-items:start;gap:5px}.instrumentPanel .modelNote{white-space:normal;font-size:10px;padding:3px 7px}.instrumentPanel .below{grid-template-columns:1fr}.instrumentPanel .kpi .name{font-size:11px}.instrumentPanel .kpi{padding:12px}.instrumentPanel .kpi strong{font-size:24px}.instrumentPanel .panel canvas{height:175px}}
+
+/* Composición editorial del banco y su hoja de resultados. */
+:root{--bg:#f4f4ef;--paper:#fcfcf9;--ink:#192d38;--line:#c6cecc;--muted:#495e66}
+.top{background:#152e39;border-color:#152e39}
+.labCover{display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch;margin:24px 0 4px;border-block:1px solid #9babae;background:#fafaf7}
+.coverCopy{padding:clamp(20px,2.5vw,40px) clamp(20px,3vw,46px) clamp(20px,2.5vw,40px) 0;align-self:center}
+.institution,.prototypePhoto figcaption,.desktopLink{font:600 12px/1.45 var(--font)}
+.institution{color:#46616b;margin-bottom:12px}.coverCopy h1{font:600 clamp(54px,6.3vw,94px)/.97 var(--display);letter-spacing:-.035em;color:#152e39}
+.coverSubtitle{font-size:clamp(17px,1.6vw,25px);font-weight:630;letter-spacing:-.02em;margin:8px 0}
+.coverDescription{font-size:14px;line-height:1.55;max-width:56ch;color:#495e66}
+.desktopLink{display:inline-block;margin-top:16px;color:#184d60;border-bottom:1px solid #768f98;padding-bottom:2px}
+.prototypePhoto{margin:0;position:relative;min-height:220px;max-height:330px;overflow:hidden;background:#213744}
+.prototypePhoto img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center 50%}
+.prototypePhoto figcaption{position:absolute;bottom:0;width:100%;display:flex;justify-content:space-between;gap:8px;padding:10px 15px;background:#112833ed;color:#fff}
+.prototypePhoto figcaption span{color:#d6dfe1;font-weight:400}
+.instrumentPanel{background:#fcfcf9;border:1px solid #bdc9c9;border-top:4px solid #253f4b;border-radius:3px;box-shadow:none;color:#192e37}
+.instrumentPanel .outputs h2,.instrumentPanel .panel h2{color:#192e37}
+#instrumentScenario{color:#4b6169}.instrumentPanel .modelNote{background:transparent;color:#46616b;border:0;border-radius:0}.instrumentPanel .modelNote span{background:#456977}
+.instrumentPanel .kpis{gap:0;border-block:1px solid #b4c4c6}
+.instrumentPanel .kpi,.instrumentPanel .kpi:first-child{background:transparent;color:#172d37;border:0;border-right:1px solid #c3ced0;border-radius:0;padding:16px clamp(12px,1.7vw,24px)}
+.instrumentPanel .kpi:last-child{border-right:0}.instrumentPanel .kpi::after{display:none}
+.instrumentPanel .kpi .name,.instrumentPanel .kpi .icon,.instrumentPanel .kpi small{color:#46616b}
+.instrumentPanel .kpi:first-child strong{color:#0c6271}.instrumentPanel .kpi strong{font-weight:620}
+.instrumentPanel .below{gap:clamp(16px,2.3vw,36px);margin-top:22px}.instrumentPanel .panel{border:0;border-radius:0;background:transparent;padding:0;box-shadow:none;color:#192e37}
+.instrumentPanel .panel h2{font-size:20px}.instrumentPanel .tiny,.instrumentPanel .panel .caption,.instrumentPanel .sectionhead>.icon{color:#506771}
+.instrumentPanel .panel canvas{background:#162e40;border-radius:3px}.instrumentPanel .chartReadout{font:550 12px/1.5 var(--mono);margin:8px 0 0;color:#324d58}
+.instrumentPanel .lineitem{border-color:#cbd4d3;color:#425a64}.instrumentPanel .lineitem strong{color:#1c3440}
+.balanceBars div{color:#344e58}.balanceBars i{background:#e3e9e8}.balanceBars b{background:#247086}.balanceBars div+div b{background:#ad6538}
+.instrumentPanel .note{background:#f4ece1;color:#674323;border-color:#ac733a}
+@media(max-width:700px){.labCover{grid-template-columns:1fr}.coverCopy{padding:20px 6px}.prototypePhoto{min-height:160px}.instrumentPanel .kpi:nth-child(2){border-right:0}.instrumentPanel .kpi:nth-child(-n+2){border-bottom:1px solid #c3ced0}.prototypePhoto figcaption{font-size:11px}}
